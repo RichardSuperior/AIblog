@@ -37,11 +37,12 @@ export default function Home() {
   }));
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden mb-6">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]">
+        <div className="lg:col-span-2 space-y-6">
+          {/* 沸点区域 */}
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-[var(--border)]">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-[#ff7d00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -55,32 +56,32 @@ export default function Home() {
                 <Link
                   key={point.id}
                   href={`/blog/${point.id}`}
-                  className="flex gap-3 p-3 bg-[var(--secondary)]/50 rounded-lg hover:bg-[var(--secondary)] transition-colors cursor-pointer"
+                  className="flex gap-3 p-3 sm:p-4 bg-[var(--secondary)]/50 rounded-lg hover:bg-[var(--secondary)] transition-colors cursor-pointer"
                 >
-                  <div className="w-8 h-8 rounded-full bg-gradient-juejin flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-sm font-medium">{point.avatar}</span>
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-juejin flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm sm:text-base font-medium">{point.avatar}</span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[var(--foreground)] text-sm leading-relaxed">
+                    <p className="text-[var(--foreground)] text-sm sm:text-base leading-relaxed">
                       <span className="text-[#58a6ff] font-medium">{point.author}</span>
                       {point.content}
                     </p>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-[var(--muted-foreground)]">
+                    <div className="flex items-center gap-3 sm:gap-4 mt-2 text-xs sm:text-sm text-[var(--muted-foreground)]">
                       <span>{point.time}</span>
                       <span className="flex items-center gap-1">
-                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                         </svg>
                         {point.likes}
                       </span>
                       <span className="flex items-center gap-1">
-                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                         </svg>
                         {point.comments}
                       </span>
                       <span className="flex items-center gap-1">
-                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 0 19 0" />
                         </svg>
                         {point.reposts}
@@ -92,8 +93,9 @@ export default function Home() {
             </div>
           </div>
 
+          {/* 最新文章 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-[var(--border)]">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-[#ff7d00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -112,16 +114,16 @@ export default function Home() {
                   href={`/blog/${post.id}`}
                   className="flex gap-4 p-4 hover:bg-[var(--secondary)]/50 transition-colors"
                 >
-                  <div className="w-20 h-14 bg-gradient-to-br from-[var(--secondary)] to-[var(--border)] rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    <svg className="w-10 h-10 text-[#ff7d00]/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <div className="w-16 h-12 sm:w-20 sm:h-14 bg-gradient-to-br from-[var(--secondary)] to-[var(--border)] rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff7d00]/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-[var(--foreground)] font-medium mb-1 line-clamp-1 group-hover:text-[#ff7d00] transition-colors">
+                    <h3 className="text-[var(--foreground)] font-medium mb-1 line-clamp-1 group-hover:text-[#ff7d00] transition-colors text-sm sm:text-base">
                       {post.title}
                     </h3>
-                    <p className="text-[var(--muted-foreground)] text-sm line-clamp-2 mb-2">
+                    <p className="text-[var(--muted-foreground)] text-xs sm:text-sm line-clamp-2 mb-2">
                       {post.excerpt}
                     </p>
                     <div className="flex items-center gap-3 text-xs text-[var(--muted-foreground)]">
@@ -146,7 +148,9 @@ export default function Home() {
           </div>
         </div>
 
+        {/* 侧边栏 - 在移动端堆叠在下方 */}
         <div className="space-y-6">
+          {/* 热门话题 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               <svg className="w-5 h-5 text-[#ff7d00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -159,7 +163,7 @@ export default function Home() {
                 <Link
                   key={topic.name}
                   href={`/blog?tag=${encodeURIComponent(topic.name)}`}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[var(--secondary)] transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-[var(--secondary)] transition-colors"
                 >
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                     index < 3 ? "bg-gradient-juejin text-white" : "bg-[var(--secondary)] text-[var(--muted-foreground)]"
@@ -178,6 +182,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* 热门文章 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               <svg className="w-5 h-5 text-[#ff7d00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -190,7 +195,7 @@ export default function Home() {
                 <Link
                   key={post.id}
                   href={`/blog/${post.id}`}
-                  className="flex items-start gap-2 px-3 py-2 rounded-lg hover:bg-[var(--secondary)] transition-colors"
+                  className="flex items-start gap-2 px-3 py-2.5 rounded-lg hover:bg-[var(--secondary)] transition-colors"
                 >
                   <span className={`text-xs font-bold flex-shrink-0 mt-1 ${
                     index === 0 ? "text-[#ff7d00]" : index === 1 ? "text-[#58a6ff]" : index === 2 ? "text-[#a371f7]" : "text-[var(--muted-foreground)]"
@@ -210,6 +215,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* 站点统计 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               <svg className="w-5 h-5 text-[#58a6ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -220,21 +226,21 @@ export default function Home() {
             <div className="p-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center p-3 bg-[var(--secondary)]/30 rounded-lg">
-                  <p className="text-2xl font-bold text-[#ff7d00]">{getAllPosts().length}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-[#ff7d00]">{getAllPosts().length}</p>
                   <p className="text-xs text-[var(--muted-foreground)]">文章总数</p>
                 </div>
                 <div className="text-center p-3 bg-[var(--secondary)]/30 rounded-lg">
-                  <p className="text-2xl font-bold text-[#58a6ff]">{tags.length}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-[#58a6ff]">{tags.length}</p>
                   <p className="text-xs text-[var(--muted-foreground)]">标签总数</p>
                 </div>
                 <div className="text-center p-3 bg-[var(--secondary)]/30 rounded-lg">
-                  <p className="text-2xl font-bold text-[#a371f7]">
+                  <p className="text-xl sm:text-2xl font-bold text-[#a371f7]">
                     {getAllPosts().reduce((sum, post) => sum + (post.views || 0), 0).toLocaleString()}
                   </p>
                   <p className="text-xs text-[var(--muted-foreground)]">总阅读量</p>
                 </div>
                 <div className="text-center p-3 bg-[var(--secondary)]/30 rounded-lg">
-                  <p className="text-2xl font-bold text-[#3fb950]">
+                  <p className="text-xl sm:text-2xl font-bold text-[#3fb950]">
                     {getAllPosts().reduce((sum, post) => sum + (post.likes || 0), 0).toLocaleString()}
                   </p>
                   <p className="text-xs text-[var(--muted-foreground)]">总点赞数</p>

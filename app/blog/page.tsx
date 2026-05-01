@@ -77,7 +77,7 @@ function BlogContent() {
   const techStack = [
     { id: "all", label: "全部", color: "#8b8b8b" },
     { id: "AI", label: "AI", color: "#FF7D00" },
-    { id: "Python", label: "Python", color: "#3776AB" },
+    { id: "智能体", label: "智能体", color: "#3776AB" },
     { id: "前端", label: "前端", color: "#58A6FF" },
     { id: "后端", label: "后端", color: "#A371F7" },
     { id: "机器学习", label: "机器学习", color: "#3FB950" },
@@ -94,10 +94,11 @@ function BlogContent() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      {/* 页面标题 */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[var(--foreground)] mb-1">
+          <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] mb-1">
             {currentTag || currentTech ? `${currentTag || currentTech} 相关文章` : "AI编程技术文章"}
           </h1>
           <p className="text-sm text-[var(--muted-foreground)]">探索AI编程的最新技术和实战经验</p>
@@ -105,22 +106,24 @@ function BlogContent() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* 主内容区 */}
         <div className="lg:col-span-3">
+          {/* 技术分类标签 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden mb-6">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
+            <div className="flex flex-wrap items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               {techStack.map((tech) => (
                 <Link
                   key={tech.id}
                   href={`/blog?tech=${tech.id}`}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
                     currentTech === tech.id || (!currentTech && !currentTag && tech.id === 'all')
                       ? "bg-[var(--secondary)] text-[var(--foreground)]"
                       : "text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--secondary)]"
                   }`}
                 >
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center gap-1">
                     <span 
-                      className="w-2 h-2 rounded-full" 
+                      className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" 
                       style={{ backgroundColor: tech.color }}
                     ></span>
                     {tech.label}
@@ -129,18 +132,19 @@ function BlogContent() {
               ))}
             </div>
             {(currentTag || currentTech) && (
-              <div className="px-4 py-2 bg-[var(--secondary)]/50 border-b border-[var(--border)] flex items-center gap-2">
-                <span className="text-sm text-[var(--muted-foreground)]">当前筛选:</span>
-                <span className="px-2 py-1 text-sm bg-[#ff7d00]/10 text-[#ff7d00] rounded-lg">
+              <div className="px-4 py-2 bg-[var(--secondary)]/50 border-b border-[var(--border)] flex flex-wrap items-center gap-2">
+                <span className="text-xs sm:text-sm text-[var(--muted-foreground)]">当前筛选:</span>
+                <span className="px-2 py-0.5 sm:px-2 sm:py-1 text-xs sm:text-sm bg-[#ff7d00]/10 text-[#ff7d00] rounded-lg">
                   {currentTag || currentTech}
                 </span>
-                <Link href="/blog" className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+                <Link href="/blog" className="text-xs sm:text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
                   清除筛选
                 </Link>
               </div>
             )}
           </div>
 
+          {/* 文章列表 */}
           <div className="space-y-4">
             {currentPosts.map((post) => (
               <Link
@@ -148,15 +152,18 @@ function BlogContent() {
                 href={`/blog/${post.id}`}
                 className="block bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[#ff7d00]/30 hover:shadow-lg hover:shadow-[#ff7d00]/5 transition-all duration-200"
               >
-                <div className="p-5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-24 h-16 bg-gradient-to-br from-[var(--secondary)] to-[var(--border)] rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-12 h-12 text-[#ff7d00]/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <div className="p-4 sm:p-5">
+                  <div className="flex flex-col sm:flex-row items-start gap-4">
+                    {/* 缩略图 */}
+                    <div className="w-full sm:w-24 h-16 sm:h-16 bg-gradient-to-br from-[var(--secondary)] to-[var(--border)] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-8 h-8 sm:w-12 sm:h-12 text-[#ff7d00]/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                       </svg>
                     </div>
+                    
+                    {/* 内容 */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         {post.tags && post.tags.length > 0 && (
                           <span className="px-2 py-0.5 text-xs tag-tech">
                             {post.tags[0]}
@@ -164,14 +171,14 @@ function BlogContent() {
                         )}
                         <span className="text-xs text-[var(--muted-foreground)]">{post.date}</span>
                       </div>
-                      <h2 className="text-lg font-semibold text-[var(--foreground)] mb-2 line-clamp-1 group-hover:text-[#ff7d00] transition-colors">
+                      <h2 className="text-base sm:text-lg font-semibold text-[var(--foreground)] mb-2 line-clamp-1 group-hover:text-[#ff7d00] transition-colors">
                         {post.title}
                       </h2>
-                      <p className="text-sm text-[var(--muted-foreground)] line-clamp-2 mb-3">
+                      <p className="text-xs sm:text-sm text-[var(--muted-foreground)] line-clamp-2 mb-3">
                         {post.excerpt}
                       </p>
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 text-xs text-[var(--muted-foreground)]">
+                        <div className="flex items-center gap-2 sm:gap-3 text-xs text-[var(--muted-foreground)]">
                           <span className="flex items-center gap-1">
                             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <circle cx="12" cy="12" r="10" />
@@ -179,14 +186,14 @@ function BlogContent() {
                             </svg>
                             AI编程之家
                           </span>
-                          <span className="flex items-center gap-1">
+                          <span className="hidden sm:flex items-center gap-1">
                             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                               <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
                             {(post.views || 0).toLocaleString()}
                           </span>
-                          <span className="flex items-center gap-1">
+                          <span className="hidden sm:flex items-center gap-1">
                             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
@@ -207,6 +214,7 @@ function BlogContent() {
             ))}
           </div>
 
+          {/* 空状态 */}
           {currentPosts.length === 0 && (
             <div className="text-center py-12 bg-[var(--card)] border border-[var(--border)] rounded-xl">
               <svg className="w-12 h-12 mx-auto text-[var(--muted-foreground)] mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -216,12 +224,13 @@ function BlogContent() {
             </div>
           )}
 
+          {/* 分页 */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-8">
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
               <button 
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
+                className={`px-3 sm:px-4 py-2 border rounded-lg text-xs sm:text-sm transition-colors ${
                   currentPage === 1
                     ? "bg-[var(--secondary)] border-[var(--border)] text-[var(--muted-foreground)] cursor-not-allowed"
                     : "bg-[var(--secondary)] border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:border-[#ff7d00]/50"
@@ -236,7 +245,7 @@ function BlogContent() {
                 <button
                   key={page}
                   onClick={() => handlePageClick(page)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-colors ${
                     currentPage === page
                       ? "bg-gradient-juejin text-white"
                       : "bg-[var(--secondary)] border border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:border-[#ff7d00]/50"
@@ -248,7 +257,7 @@ function BlogContent() {
               <button 
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
+                className={`px-3 sm:px-4 py-2 border rounded-lg text-xs sm:text-sm transition-colors ${
                   currentPage === totalPages
                     ? "bg-[var(--secondary)] border-[var(--border)] text-[var(--muted-foreground)] cursor-not-allowed"
                     : "bg-[var(--secondary)] border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:border-[#ff7d00]/50"
@@ -263,7 +272,9 @@ function BlogContent() {
           )}
         </div>
 
+        {/* 侧边栏 - 在移动端堆叠在下方 */}
         <div className="space-y-6">
+          {/* 热门标签 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               <svg className="w-5 h-5 text-[#ff7d00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -299,6 +310,7 @@ function BlogContent() {
             </div>
           </div>
 
+          {/* 最新文章 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               <svg className="w-5 h-5 text-[#ff7d00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -323,6 +335,7 @@ function BlogContent() {
             </div>
           </div>
 
+          {/* 站点统计 */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)]">
               <svg className="w-5 h-5 text-[#58a6ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -333,21 +346,21 @@ function BlogContent() {
             <div className="p-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-[#ff7d00]">{posts.length}</p>
+                  <p className="text-xl font-bold text-[#ff7d00]">{posts.length}</p>
                   <p className="text-xs text-[var(--muted-foreground)]">文章总数</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-[#58a6ff]">{allTags.length}</p>
+                  <p className="text-xl font-bold text-[#58a6ff]">{allTags.length}</p>
                   <p className="text-xs text-[var(--muted-foreground)]">标签总数</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-[#a371f7]">
+                  <p className="text-xl font-bold text-[#a371f7]">
                     {posts.reduce((sum, post) => sum + (post.views || 0), 0).toLocaleString()}
                   </p>
                   <p className="text-xs text-[var(--muted-foreground)]">总阅读量</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-[#3fb950]">
+                  <p className="text-xl font-bold text-[#3fb950]">
                     {posts.reduce((sum, post) => sum + (post.likes || 0), 0).toLocaleString()}
                   </p>
                   <p className="text-xs text-[var(--muted-foreground)]">总点赞数</p>
