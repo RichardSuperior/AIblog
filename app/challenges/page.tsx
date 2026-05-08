@@ -1,5 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getDailyChallenge, getAllExercises } from "@/lib/prompt";
+
+export const metadata: Metadata = {
+  title: "每日挑战 | AI编程之家",
+  description: "每日更新的AI提示词挑战，通过实战锻炼提示词构建能力，与社区一起进步。",
+};
 
 export default function ChallengesPage() {
   const dailyChallenge = getDailyChallenge();
@@ -50,12 +56,12 @@ export default function ChallengesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[var(--background)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-[var(--card)] border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-light text-gray-900">每日挑战</h1>
-          <p className="mt-2 text-gray-600">每天一个新挑战，持续提升你的提示词技能</p>
+          <h1 className="text-3xl font-light text-[var(--foreground)]">每日挑战</h1>
+          <p className="mt-2 text-[var(--muted-foreground)]">每天一个新挑战，持续提升你的提示词技能</p>
         </div>
       </div>
 
@@ -105,61 +111,61 @@ export default function ChallengesPage() {
 
         {/* Challenge Categories */}
         <div className="mb-16">
-          <h2 className="text-3xl font-light text-gray-900 mb-8 text-center">挑战类型</h2>
+          <h2 className="text-3xl font-light text-[var(--foreground)] mb-8 text-center">挑战类型</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/challenges?type=prompt-completion">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow text-center group">
-                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow text-center group">
+                <div className="w-20 h-20 bg-blue-100/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <span className="text-3xl">📝</span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">提示词补全</h3>
-                <p className="text-sm text-gray-600 mb-4">完善提示词内容</p>
+                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">提示词补全</h3>
+                <p className="text-sm text-[var(--muted-foreground)] mb-4">完善提示词内容</p>
                 <div className="text-2xl font-light text-blue-600">
                   {promptCompletion.length}
                 </div>
-                <p className="text-sm text-gray-500">个挑战</p>
+                <p className="text-sm text-[var(--muted-foreground)]">个挑战</p>
               </div>
             </Link>
 
             <Link href="/challenges?type=comparison">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow text-center group">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow text-center group">
+                <div className="w-20 h-20 bg-green-100/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <span className="text-3xl">⚖️</span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">对比优化</h3>
-                <p className="text-sm text-gray-600 mb-4">对比不同提示词效果</p>
+                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">对比优化</h3>
+                <p className="text-sm text-[var(--muted-foreground)] mb-4">对比不同提示词效果</p>
                 <div className="text-2xl font-light text-green-600">
                   {comparison.length}
                 </div>
-                <p className="text-sm text-gray-500">个挑战</p>
+                <p className="text-sm text-[var(--muted-foreground)]">个挑战</p>
               </div>
             </Link>
 
             <Link href="/challenges?type=scenario">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow text-center group">
-                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow text-center group">
+                <div className="w-20 h-20 bg-orange-100/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <span className="text-3xl">🎭</span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">场景模拟</h3>
-                <p className="text-sm text-gray-600 mb-4">实际应用场景</p>
+                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">场景模拟</h3>
+                <p className="text-sm text-[var(--muted-foreground)] mb-4">实际应用场景</p>
                 <div className="text-2xl font-light text-orange-600">
                   {scenario.length}
                 </div>
-                <p className="text-sm text-gray-500">个挑战</p>
+                <p className="text-sm text-[var(--muted-foreground)]">个挑战</p>
               </div>
             </Link>
 
             <Link href="/challenges?type=analysis">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow text-center group">
-                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow text-center group">
+                <div className="w-20 h-20 bg-purple-100/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <span className="text-3xl">🔍</span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">深度分析</h3>
-                <p className="text-sm text-gray-600 mb-4">分析提示词原理</p>
+                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">深度分析</h3>
+                <p className="text-sm text-[var(--muted-foreground)] mb-4">分析提示词原理</p>
                 <div className="text-2xl font-light text-purple-600">
                   {analysis.length}
                 </div>
-                <p className="text-sm text-gray-500">个挑战</p>
+                <p className="text-sm text-[var(--muted-foreground)]">个挑战</p>
               </div>
             </Link>
           </div>
@@ -167,30 +173,30 @@ export default function ChallengesPage() {
 
         {/* Recent Challenges */}
         <div>
-          <h2 className="text-3xl font-light text-gray-900 mb-8">最近挑战</h2>
+          <h2 className="text-3xl font-light text-[var(--foreground)] mb-8">最近挑战</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allExercises.slice(0, 6).map((exercise) => (
               <Link
                 key={exercise.id}
                 href={`/challenges/${exercise.id}`}
-                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+                className="bg-[var(--card)] border border-[var(--border)] rounded-lg p-6 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className={`px-3 py-1 rounded-full text-sm ${getDifficultyColor(exercise.difficulty)}`}>
                     {getDifficultyText(exercise.difficulty)}
                   </div>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-[var(--muted-foreground)]">
                     {exercise.points} 分
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-xl">{getTypeIcon(exercise.type)}</span>
-                  <span className="text-sm text-gray-500">{getTypeText(exercise.type)}</span>
+                  <span className="text-sm text-[var(--muted-foreground)]">{getTypeText(exercise.type)}</span>
                 </div>
-                <h3 className="font-medium text-gray-900 mb-2">{exercise.title}</h3>
-                <p className="text-sm text-gray-600 line-clamp-2">{exercise.description}</p>
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                <h3 className="font-medium text-[var(--foreground)] mb-2">{exercise.title}</h3>
+                <p className="text-sm text-[var(--muted-foreground)] line-clamp-2">{exercise.description}</p>
+                <div className="mt-4 pt-4 border-t border-[var(--border)]">
+                  <div className="flex items-center justify-between text-sm text-[var(--muted-foreground)]">
                     <span>≈ {Math.ceil(exercise.points / 2)} 分钟</span>
                     <span>新挑战</span>
                   </div>
@@ -203,8 +209,8 @@ export default function ChallengesPage() {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl font-light text-gray-900 mb-4">准备好接受挑战了吗？</h3>
-            <p className="text-gray-600 mb-6">
+            <h3 className="text-2xl font-light text-[var(--foreground)] mb-4">准备好接受挑战了吗？</h3>
+            <p className="text-[var(--muted-foreground)] mb-6">
               每天坚持练习，逐步提升你的AI提示词技能。完成挑战可获得积分和成就。
             </p>
             <Link

@@ -1,4 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "学习中心 | AI编程之家",
+  description: "系统化学习AI提示词工程，选择适合你的学习路径，从入门到精通。",
+};
 
 export default function LearningCenter() {
   const learningPaths = [
@@ -89,31 +95,31 @@ export default function LearningCenter() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[var(--background)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-[var(--card)] border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-light text-gray-900">学习中心</h1>
-          <p className="mt-2 text-gray-600">系统化学习AI提示词技能的统一入口</p>
+          <h1 className="text-3xl font-light text-[var(--foreground)]">学习中心</h1>
+          <p className="mt-2 text-[var(--muted-foreground)]">系统化学习AI提示词技能的统一入口</p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Quick Actions */}
         <div className="mb-12">
-          <h2 className="text-2xl font-light text-gray-900 mb-6">快速开始</h2>
+          <h2 className="text-2xl font-light text-[var(--foreground)] mb-6">快速开始</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {quickActions.map((action) => (
               <Link
                 key={action.href}
                 href={action.href}
-                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow"
+                className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow"
               >
                 <div className={`${action.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}>
                   <span className="text-2xl">{action.icon}</span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">{action.title}</h3>
-                <p className="text-gray-600">{action.description}</p>
+                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">{action.title}</h3>
+                <p className="text-[var(--muted-foreground)]">{action.description}</p>
               </Link>
             ))}
           </div>
@@ -121,22 +127,22 @@ export default function LearningCenter() {
 
         {/* Learning Paths */}
         <div className="mb-12">
-          <h2 className="text-2xl font-light text-gray-900 mb-6">学习路径</h2>
+          <h2 className="text-2xl font-light text-[var(--foreground)] mb-6">学习路径</h2>
           <div className="space-y-6">
             {learningPaths.map((path) => (
               <Link
                 key={path.id}
                 href={`/learning/paths/${path.id}`}
-                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow block"
+                className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow block"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <div className="w-16 h-16 bg-blue-100/10 rounded-lg flex items-center justify-center">
                       <span className="text-2xl">{path.icon}</span>
                     </div>
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl font-medium text-gray-900">{path.title}</h3>
+                        <h3 className="text-xl font-medium text-[var(--foreground)]">{path.title}</h3>
                         <span className={`px-3 py-1 rounded-full text-sm ${
                           path.level === '初级' ? 'bg-green-100 text-green-800' :
                           path.level === '中级' ? 'bg-yellow-100 text-yellow-800' :
@@ -145,21 +151,21 @@ export default function LearningCenter() {
                           {path.level}
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-3">{path.description}</p>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <p className="text-[var(--muted-foreground)] mb-3">{path.description}</p>
+                      <div className="flex items-center gap-4 text-sm text-[var(--muted-foreground)]">
                         <span>{path.duration}</span>
                         <span>{path.modules} 个模块</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="w-32 bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="w-32 bg-[var(--secondary)] rounded-full h-2 mb-2">
                       <div
                         className="bg-blue-600 h-2 rounded-full"
                         style={{ width: `${path.progress}%` }}
                       ></div>
                     </div>
-                    <span className="text-sm text-gray-500">{path.progress}% 完成</span>
+                    <span className="text-sm text-[var(--muted-foreground)]">{path.progress}% 完成</span>
                   </div>
                 </div>
               </Link>
@@ -170,7 +176,7 @@ export default function LearningCenter() {
         {/* Featured Courses */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-light text-gray-900">精选课程</h2>
+            <h2 className="text-2xl font-light text-[var(--foreground)]">精选课程</h2>
             <Link href="/learning/courses" className="text-blue-600 hover:text-blue-700">
               查看全部 →
             </Link>
@@ -180,7 +186,7 @@ export default function LearningCenter() {
               <Link
                 key={course.id}
                 href={`/learning/courses/${course.id}`}
-                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow"
+                className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
@@ -196,12 +202,12 @@ export default function LearningCenter() {
                     <div className="flex items-center gap-1 text-yellow-400">
                       ★★★★★
                     </div>
-                    <span className="text-sm text-gray-500">{course.rating}</span>
+                    <span className="text-sm text-[var(--muted-foreground)]">{course.rating}</span>
                   </div>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">{course.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm">{course.description}</p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">{course.title}</h3>
+                <p className="text-[var(--muted-foreground)] mb-4 text-sm">{course.description}</p>
+                <div className="flex items-center justify-between text-sm text-[var(--muted-foreground)]">
                   <span>{course.duration}</span>
                   <span>{course.enrolled} 人学习</span>
                 </div>
@@ -212,34 +218,34 @@ export default function LearningCenter() {
 
         {/* Content Overview */}
         <div>
-          <h2 className="text-2xl font-light text-gray-900 mb-6">学习资源概览</h2>
+          <h2 className="text-2xl font-light text-[var(--foreground)] mb-6">学习资源概览</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <Link href="/templates" className="text-center">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow">
                 <div className="text-3xl mb-2">📚</div>
-                <div className="text-lg font-medium text-gray-900">模板库</div>
-                <div className="text-sm text-gray-500 mt-1">500+ 模板</div>
+                <div className="text-lg font-medium text-[var(--foreground)]">模板库</div>
+                <div className="text-sm text-[var(--muted-foreground)] mt-1">500+ 模板</div>
               </div>
             </Link>
             <Link href="/learning/exercises" className="text-center">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow">
                 <div className="text-3xl mb-2">💪</div>
-                <div className="text-lg font-medium text-gray-900">练习题库</div>
-                <div className="text-sm text-gray-500 mt-1">50+ 练习</div>
+                <div className="text-lg font-medium text-[var(--foreground)]">练习题库</div>
+                <div className="text-sm text-[var(--muted-foreground)] mt-1">50+ 练习</div>
               </div>
             </Link>
             <Link href="/cases" className="text-center">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow">
                 <div className="text-3xl mb-2">📊</div>
-                <div className="text-lg font-medium text-gray-900">案例分析</div>
-                <div className="text-sm text-gray-500 mt-1">15+ 案例</div>
+                <div className="text-lg font-medium text-[var(--foreground)]">案例分析</div>
+                <div className="text-sm text-[var(--muted-foreground)] mt-1">15+ 案例</div>
               </div>
             </Link>
             <Link href="/challenges" className="text-center">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+              <div className="bg-[var(--card)] rounded-lg border border-[var(--border)] p-6 hover:shadow-md transition-shadow">
                 <div className="text-3xl mb-2">🏆</div>
-                <div className="text-lg font-medium text-gray-900">每日挑战</div>
-                <div className="text-sm text-gray-500 mt-1">每日更新</div>
+                <div className="text-lg font-medium text-[var(--foreground)]">每日挑战</div>
+                <div className="text-sm text-[var(--muted-foreground)] mt-1">每日更新</div>
               </div>
             </Link>
           </div>

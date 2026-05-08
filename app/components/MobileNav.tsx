@@ -10,20 +10,16 @@ export default function MobileNav() {
 
     const navItems = [
         { href: "/", label: "首页" },
-        { href: "/blog", label: "AI编程" },
-        { href: "/about", label: "关于我们" },
-    ];
-
-    const tags = [
-        { name: "AI", tagClass: "tag-ai" },
-        { name: "智能体", tagClass: "tag-python" },
-        { name: "前端", tagClass: "tag-tech" },
-        { name: "后端", tagClass: "tag-new" },
+        { href: "/learning", label: "学习中心" },
+        { href: "/templates", label: "模板库" },
+        { href: "/practice", label: "练习中心" },
+        { href: "/challenges", label: "挑战" },
+        { href: "/cases", label: "案例分析" },
     ];
 
     return (
         <>
-            {/* 汉堡按钮 */}
+            {/* Hamburger button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="lg:hidden p-2 rounded-lg hover:bg-[var(--secondary)] transition-colors"
@@ -37,9 +33,7 @@ export default function MobileNav() {
                     strokeWidth="2"
                 >
                     {isOpen ? (
-                        <>
-                            <path d="M6 18L18 6M6 6l12 12" />
-                        </>
+                        <path d="M6 18L18 6M6 6l12 12" />
                     ) : (
                         <>
                             <line x1="3" y1="12" x2="21" y2="12" />
@@ -50,45 +44,23 @@ export default function MobileNav() {
                 </svg>
             </button>
 
-            {/* 移动端菜单 */}
+            {/* Mobile menu */}
             <div
                 className={`fixed inset-0 z-[60] lg:hidden transition-all duration-300 ${
                     isOpen ? "opacity-100 visible" : "opacity-0 invisible"
                 }`}
             >
-                {/* 背景遮罩 */}
+                {/* Overlay */}
                 <div
                     className="absolute inset-0 bg-black/50 backdrop-blur-sm"
                     onClick={() => setIsOpen(false)}
                 />
 
-                {/* 菜单内容 */}
+                {/* Menu content */}
                 <div className="absolute top-16 left-0 right-0 bg-[var(--card)] border-b border-[var(--border)] shadow-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
                     <div className="p-4 space-y-4">
-                        {/* 搜索框 */}
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="搜索文章..."
-                                className="w-full px-4 py-3 pl-10 bg-[var(--background)] border border-[var(--border)] rounded-lg text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:border-[#ff7d00] focus:ring-1 focus:ring-[#ff7d00]/50"
-                            />
-                            <svg
-                                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)]"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <circle cx="11" cy="11" r="8" />
-                                <path d="M21 21l-4.35-4.35" />
-                            </svg>
-                        </div>
-
-                        {/* 导航链接 */}
-                        <div className="border-t border-[var(--border)] pt-4">
-                            <h3 className="text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider mb-3">
-                                导航
-                            </h3>
+                        {/* Navigation links */}
+                        <div className="pt-2">
                             <div className="space-y-1">
                                 {navItems.map((item) => (
                                     <Link
@@ -96,7 +68,7 @@ export default function MobileNav() {
                                         href={item.href}
                                         onClick={() => setIsOpen(false)}
                                         className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                                            pathname === item.href
+                                            pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
                                                 ? "text-[#ff7d00] bg-[#ff7d00]/10"
                                                 : "text-[var(--foreground)] hover:bg-[var(--secondary)]"
                                         }`}
@@ -107,22 +79,40 @@ export default function MobileNav() {
                             </div>
                         </div>
 
-                        {/* 标签 */}
+                        {/* Quick links */}
                         <div className="border-t border-[var(--border)] pt-4">
                             <h3 className="text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider mb-3">
-                                热门标签
+                                快速入口
                             </h3>
                             <div className="flex flex-wrap gap-2">
-                                {tags.map((tag) => (
-                                    <Link
-                                        key={tag.name}
-                                        href={`/blog?tag=${encodeURIComponent(tag.name)}`}
-                                        onClick={() => setIsOpen(false)}
-                                        className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${tag.tagClass}`}
-                                    >
-                                        {tag.name}
-                                    </Link>
-                                ))}
+                                <Link
+                                    href="/templates?category=content-creation"
+                                    onClick={() => setIsOpen(false)}
+                                    className="px-4 py-2 text-sm font-medium rounded-full tag-hot"
+                                >
+                                    内容创作
+                                </Link>
+                                <Link
+                                    href="/templates?category=coding-assistance"
+                                    onClick={() => setIsOpen(false)}
+                                    className="px-4 py-2 text-sm font-medium rounded-full tag-tech"
+                                >
+                                    编程助手
+                                </Link>
+                                <Link
+                                    href="/practice"
+                                    onClick={() => setIsOpen(false)}
+                                    className="px-4 py-2 text-sm font-medium rounded-full tag-new"
+                                >
+                                    实战练习
+                                </Link>
+                                <Link
+                                    href="/challenges"
+                                    onClick={() => setIsOpen(false)}
+                                    className="px-4 py-2 text-sm font-medium rounded-full tag-ai"
+                                >
+                                    每日挑战
+                                </Link>
                             </div>
                         </div>
                     </div>
